@@ -1,5 +1,5 @@
   <mat-tab-group
-    (selectedIndexChange)="onTabFocus($event)" 
+    (selectedIndexChange)="onTabFocus($event)"
     [selectedIndex]="activeTab">
 
     <!-- MINUTE -->
@@ -19,16 +19,13 @@
 
     <!-- HOURLY -->
     <mat-tab *ngIf="!options.hideHourlyTab" label="{{ 'cronEditor.lbl.hourly' | translate }}">
-      <div class="cron-editor-tab-content" [formGroup]="hourlyForm">
+      <div class="cron-editor-tab-content">
         <span>{{('cronEditor.lbl.every' | translate) + '&nbsp;' + '&nbsp;' }}</span>
-        <mat-form-field>
           <mat-label>{{ 'cronEditor.lbl.hours' | translate }}</mat-label>
-          <mat-select formControlName="hours">
-            <mat-option *ngFor="let hour of selectOptions.hours" [value]="hour">
-              {{ hour }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <cron-time-picker [formGroup]="hourlyForm"
+                          [use24HourTime]="options.use24HourTime"
+                          [hideSeconds]="options.hideSeconds ||  !isCronFlavorQuartz">
+        </cron-time-picker>
       </div>
     </mat-tab>
 
@@ -102,7 +99,7 @@
 
         <span>{{ ('cronEditor.lbl.at' | translate) + '&nbsp;' + '&nbsp;' }}</span>
 
-        <cron-time-picker 
+        <cron-time-picker
           [formGroup]="weeklyForm"
           [use24HourTime]="options.use24HourTime"
           [hideSeconds]="options.hideSeconds|| !isCronFlavorQuartz">
@@ -158,7 +155,7 @@
 
               {{ ('cronEditor.lbl.atTime' | translate) + '&nbsp;' }}
 
-              <cron-time-picker 
+              <cron-time-picker
                 [formGroup]="monthlyForm.controls.specificDay"
                 [use24HourTime]="options.use24HourTime"
                 [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
@@ -203,7 +200,7 @@
 
               {{ ('cronEditor.lbl.atTime' | translate) + '&nbsp;' }}
 
-              <cron-time-picker 
+              <cron-time-picker
                 [formGroup]="monthlyForm.controls.specificWeekDay"
                 [use24HourTime]="options.use24HourTime"
                 [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
@@ -254,7 +251,7 @@
 
             {{ '&nbsp;' + ('cronEditor.lbl.atTime' | translate) + '&nbsp;' }}
 
-            <cron-time-picker 
+            <cron-time-picker
               [formGroup]="yearlyForm.controls.specificMonthDay"
               [use24HourTime]="options.use24HourTime"
               [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">
@@ -296,7 +293,7 @@
 
             {{ ('cronEditor.lbl.atTime' | translate) + '&nbsp;' }}
 
-            <cron-time-picker 
+            <cron-time-picker
               [formGroup]="yearlyForm.controls.specificMonthWeek"
               [use24HourTime]="options.use24HourTime"
               [hideSeconds]="options.hideSeconds || !isCronFlavorQuartz">

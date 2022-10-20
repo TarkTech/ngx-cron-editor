@@ -16,7 +16,7 @@ import { Subject, takeUntil } from 'rxjs';
 
 /**
  * build the cron from this form.
- * <app-cron-editor 
+ * <app-cron-editor
     [options]="cronOptions"
     [cronStartingValue]="cronValue"
     (cronChange)="seeCron($event)">
@@ -218,7 +218,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
 
   private computeHourlyCron(state: any) {
     this.cron =
-      `0 0 0/${state.hours} * * ${this.weekDayDefaultChar} ${this.yearDefaultChar}`.trim();
+      `${this.isCronFlavorQuartz ? state.everyDays.seconds : ''} 0 0/${state.hours} * * ${this.weekDayDefaultChar} ${this.yearDefaultChar}`.trim();
   }
 
   private computeDailyCron(state: any) {
