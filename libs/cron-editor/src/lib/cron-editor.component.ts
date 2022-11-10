@@ -6,7 +6,11 @@ import {
   OnInit,
   EventEmitter,
   forwardRef,
-  OnDestroy
+  OnDestroy,
+  OnChanges,
+  SimpleChanges,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { CronOptions } from './cron-options';
 import { MonthWeeks, Tabs, Months } from './enums';
@@ -42,6 +46,8 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
   @Input() cronStartingValue: string;
 
   @Output() cronChange = new EventEmitter<string>();
+
+  @Output() vaildExpression = new EventEmitter<boolean>();
 
   /** what initial tab to show the cron on */
   public activeTab;
@@ -110,6 +116,12 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
   }
 
   constructor(private fb: FormBuilder, private translateService: TranslateService) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    // if(this.state){
+    //   this.handleModelChange(this.cron);
+    // }
+    this.isExpressionValid()
+  }
 
   public ngOnInit(): void {
     this.currentLanguage = this.translateService.currentLang;
@@ -342,17 +354,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
       this.isDirty = false;
       return;
     }
-
     this.isDirty = false;
-
-    if (!this.cronIsValid(cron)) {
-      if (this.isCronFlavorQuartz) {
-        throw new Error('Invalid cron expression, there must be 6 or 7 segments');
-      }
-      if (this.isCronFlavorStandard) {
-        throw new Error('Invalid cron expression, there must be 5 segments');
-      }
-    }
     this.populateTab(cron);
   }
 
@@ -410,7 +412,9 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
     }
     // ADVANCED TAB
     this.activeTab = this.tabList.indexOf(Tabs.advanced);
+    this.advancedForm
     this.state.advanced.expression = origCron;
+    this.advancedForm?.setValue({ expression : this.cron });
   }
 
   private minutes(cron: string): void {
@@ -647,6 +651,17 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
       monthDaysWithOutLasts: [...[...this.getRange(1, 31).map(String)]],
       hourTypes: ['AM', 'PM']
     };
+  }
+
+  isExpressionValid(){
+    if (!this.cronIsValid(this.cron)) {
+      if (this.isCronFlavorQuartz) {
+        this.vaildExpression.emit(false);
+      }
+      if (this.isCronFlavorStandard) {
+        this.vaildExpression.emit(false);
+      }
+    }
   }
 
   /**
