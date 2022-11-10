@@ -38,7 +38,8 @@ export const CRON_VALUE_ACCESSOR: any = {
   selector: 'app-cron-editor',
   templateUrl: './cron-editor.template.html',
   styleUrls: ['./cron-editor.component.css'],
-  providers: [CRON_VALUE_ACCESSOR]
+  providers: [CRON_VALUE_ACCESSOR],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @Input() public options: CronOptions;
@@ -58,6 +59,8 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
   public state: any;
 
   private isDirty: boolean;
+
+  private isValid: boolean = false;
 
   readonly MonthWeeks = MonthWeeks;
 
@@ -79,6 +82,8 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
 
   currentLanguage = 'en';
 
+  cronValue : string;
+
   /** it varies due to the option JSON */
   tabList: string[] = [];
 
@@ -91,7 +96,9 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
 
   /** set the cron around this component */
   set cron(value: string) {
-    this.onChange(value);
+    this.cronValue = value;
+    this.isExpressionValid();
+    this.cronStartingValue = value;
     this.cronChange.emit(value);
   }
 
@@ -117,10 +124,9 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
 
   constructor(private fb: FormBuilder, private translateService: TranslateService) {}
   ngOnChanges(changes: SimpleChanges): void {
-    // if(this.state){
-    //   this.handleModelChange(this.cron);
-    // }
-    this.isExpressionValid()
+    if(this.state && changes.cronStartingValue.currentValue !== this.cronValue){
+      this.handleModelChange(this.cron);
+    }
   }
 
   public ngOnInit(): void {
@@ -180,7 +186,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
 
     if (!this.options.hideAdvancedTab) {
       this.advancedForm = this.fb.group({
-        expression: [this.isCronFlavorQuartz ? this.cron : '15 10 2 * *']
+        expression: this.cron
       });
       this.advancedForm.controls.expression.valueChanges.subscribe((next) =>
         this.computeAdvancedExpression(next)
@@ -230,7 +236,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
 
   private computeHourlyCron(state: any) {
     this.cron =
-      `${this.isCronFlavorQuartz ? state.everyDays.seconds : ''} 0 0/${state.hours} * * ${this.weekDayDefaultChar} ${this.yearDefaultChar}`.trim();
+      `${this.isCronFlavorQuartz ? state.everyDays.seconds : ''} ${state.minutes} 0/${state.hours} * * ${this.weekDayDefaultChar} ${this.yearDefaultChar}`.trim();
   }
 
   private computeDailyCron(state: any) {
@@ -355,7 +361,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
       return;
     }
     this.isDirty = false;
-    this.populateTab(cron);
+      this.populateTab(cron);
   }
 
   /**
@@ -365,7 +371,6 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
    * @returns nothing
    */
   private populateTab(cron: string): void {
-    const origCron: string = cron;
     if (cron.split(' ').length === 5 && this.isCronFlavorStandard) {
       // eslint-disable-next-line no-param-reassign
       cron = `0 ${cron} *`;
@@ -411,10 +416,14 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
       return;
     }
     // ADVANCED TAB
+    this.advance(cron);
+  }
+
+  private advance(cron){
     this.activeTab = this.tabList.indexOf(Tabs.advanced);
-    this.advancedForm
+    const origCron: string = cron;
     this.state.advanced.expression = origCron;
-    this.advancedForm?.setValue({ expression : this.cron });
+    this.advancedForm?.setValue({ expression : this.cron});
   }
 
   private minutes(cron: string): void {
@@ -657,11 +666,15 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
     if (!this.cronIsValid(this.cron)) {
       if (this.isCronFlavorQuartz) {
         this.vaildExpression.emit(false);
+        this.isValid = false;
+        return;
       }
       if (this.isCronFlavorStandard) {
         this.vaildExpression.emit(false);
+        this.isValid = false;
       }
     }
+    this.isValid = true; 
   }
 
   /**
