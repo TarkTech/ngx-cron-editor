@@ -1,4 +1,4 @@
-# @cardiosmircem/ngx-cron-editor
+# @tarktech/ngx-cron-editor
 
 An angular component for building cron expressions graphically with **i18n localization available** 🥳.
 Other fixes are:
@@ -9,20 +9,20 @@ Other fixes are:
 
 ## Demo
 
-A demo can be found 👉 👉 👉 [here](https://cardiosmircem.github.io/ngx-cron-editor/) 👈 👈 👈
+A demo can be found 👉 👉 👉 [here](https://tarktech.github.io/ngx-cron-editor/) 👈 👈 👈
 
 ## Usage
 
 1. Install the npm package
 
    ```
-   $ npm i @cardiosmircem/ngx-cron-editor
+   $ npm i @tarktech/ngx-cron-editor
    ```
 
 2. import the module in your own module
 
    ```ts
-   import { CronEditorModule } from '@cardiosmircem/ngx-cron-editor';
+   import { CronEditorModule } from '@tarktech/ngx-cron-editor';
 
    @NgModule({
        imports: [..., CronEditorModule],
@@ -46,7 +46,7 @@ A demo can be found 👉 👉 👉 [here](https://cardiosmircem.github.io/ngx-cr
 4. While in your ts component you have
 
 ```ts
-import { CronOptions } from '@cardiosmircem/ngx-cron-editor';
+import { CronOptions } from '@tarktech/ngx-cron-editor';
 
 @Component({
     ...

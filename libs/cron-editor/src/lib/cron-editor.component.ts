@@ -96,9 +96,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
 
   /** set the cron around this component */
   set cron(value: string) {
-    this.cronValue = value;
-    this.isExpressionValid();
-    this.cronStartingValue = value;
+    this.onChange(value);
     this.cronChange.emit(value);
   }
 
@@ -124,9 +122,6 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
 
   constructor(private fb: FormBuilder, private translateService: TranslateService) {}
   ngOnChanges(changes: SimpleChanges): void {
-    if(this.state && changes.cronStartingValue.currentValue !== this.cronValue){
-      this.handleModelChange(this.cron);
-    }
   }
 
   public ngOnInit(): void {
@@ -236,7 +231,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
 
   private computeHourlyCron(state: any) {
     this.cron =
-      `${this.isCronFlavorQuartz ? state.everyDays.seconds : ''} ${state.minutes} 0/${state.hours} * * ${this.weekDayDefaultChar} ${this.yearDefaultChar}`.trim();
+      `${this.isCronFlavorQuartz ? state.seconds : ''} ${state.minutes} 0/${state.hours} * * ${this.weekDayDefaultChar} ${this.yearDefaultChar}`.trim();
   }
 
   private computeDailyCron(state: any) {
@@ -423,7 +418,6 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
     this.activeTab = this.tabList.indexOf(Tabs.advanced);
     const origCron: string = cron;
     this.state.advanced.expression = origCron;
-    this.advancedForm?.setValue({ expression : this.cron});
   }
 
   private minutes(cron: string): void {
