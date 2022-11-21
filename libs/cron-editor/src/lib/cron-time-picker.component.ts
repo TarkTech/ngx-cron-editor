@@ -30,14 +30,24 @@ export class TimePickerComponent {
 
   @Input() public hideSeconds = true;
 
+  @Input() hourTab = false;
+
   public minutes = [...range(0, 59)];
 
   public seconds = [...range(0, 59)];
 
   public hourTypes = ['AM', 'PM'];
 
+  get hour12Format(): number[]{
+    return this.hourTab ? [...range(1, 12)] : [...range(0,12)];
+  }
+
+  get hour24Format(): number[]{
+    return this.hourTab ? [...range(1, 24)] : [...range(0, 24)];
+  }
+
   get hours(): number[] {
-    return this.use24HourTime ? [...range(0, 23)] : [...range(0, 12)];
+    return this.use24HourTime ? this.hour24Format :  this.hour12Format;
   }
 
   constructor(public parent: ControlContainer) {}
