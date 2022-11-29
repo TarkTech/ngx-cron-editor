@@ -89,6 +89,8 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
 
   unsub$ = new Subject<void>();
 
+  firstChange = 0;
+
   /** get the value from the input value and use it around the component */
   get cron(): string {
     return this.cronStartingValue;
@@ -122,6 +124,17 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
 
   constructor(private fb: FormBuilder, private translateService: TranslateService) {}
   ngOnChanges(changes: SimpleChanges): void {
+    if(changes.cronStartingValue.firstChange){
+      this.firstChange++;
+    }
+    if(this.state && this.firstChange){
+      const prevTab = this.activeTab;
+      this.handleModelChange(this.cron);
+      if(prevTab != this.activeTab || this.firstChange){
+        this.createForm();
+      }
+      this.firstChange = 0;
+    }
   }
 
   public ngOnInit(): void {
@@ -136,6 +149,10 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
     // populate the state with cron passed in input
     this.handleModelChange(this.cron);
 
+    this.createForm()
+  }
+
+  private createForm(){
     // use the state created above for the form groups of different tabs
     if (!this.options.hideMinutesTab) {
       this.minutesForm = this.fb.group(this.state.minutes);
@@ -356,7 +373,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
       return;
     }
     this.isDirty = false;
-      this.populateTab(cron);
+    this.populateTab(cron);
   }
 
   /**
