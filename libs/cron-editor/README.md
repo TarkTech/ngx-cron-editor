@@ -9,7 +9,7 @@ Other fixes are:
 
 ## Demo
 
-A demo can be found 👉 👉 👉 [here](https://tarktech.github.io/ngx-cron-editor/) 👈 👈 👈
+A demo can be found 👉 👉 👉 [here](https://cardiosmircem.github.io/ngx-cron-editor/) 👈 👈 👈
 
 ## Usage
 

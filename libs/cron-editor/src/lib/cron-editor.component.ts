@@ -440,7 +440,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
   private minutes(cron: string): void {
     this.activeTab = this.tabList.indexOf(Tabs.minutes);
     const [seconds, minutes] = cron.split(' ');
-    this.state.minutes.minutes = parseInt(minutes.substring(2), 10);
+    this.state.minutes.minutes = parseInt(minutes.substring(2), 10).toString().padStart(2, '0');
     this.state.minutes.seconds = parseInt(seconds, 10);
   }
 
@@ -448,7 +448,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
     this.activeTab = this.tabList.indexOf(Tabs.hourly);
     const [seconds, minutes, hours] = cron.split(' ');
     this.state.hourly.hours = parseInt(hours.substring(2), 10);
-    this.state.hourly.minutes = parseInt(minutes, 10);
+    this.state.hourly.minutes = parseInt(minutes, 10).toString().padStart(2, '0');
     this.state.hourly.seconds = parseInt(seconds, 10);
   }
 
@@ -462,7 +462,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
     const parsedHours = parseInt(hours, 10);
     this.state.daily.everyDays.hours = this.getAmPmHour(parsedHours);
     this.state.daily.everyDays.hourType = this.getHourType(parsedHours);
-    this.state.daily.everyDays.minutes = parseInt(minutes, 10);
+    this.state.daily.everyDays.minutes = parseInt(minutes, 10).toString().padStart(2, '0');
     this.state.daily.everyDays.seconds = parseInt(seconds, 10);
   }
 
@@ -473,7 +473,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
     const parsedHours = parseInt(hours, 10);
     this.state.daily.everyWeekDay.hours = this.getAmPmHour(parsedHours);
     this.state.daily.everyWeekDay.hourType = this.getHourType(parsedHours);
-    this.state.daily.everyWeekDay.minutes = parseInt(minutes, 10);
+    this.state.daily.everyWeekDay.minutes = parseInt(minutes, 10).toString().padStart(2, '0');
     this.state.daily.everyWeekDay.seconds = parseInt(seconds, 10);
   }
 
@@ -489,7 +489,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
     const parsedHours = parseInt(hours, 10);
     this.state.weekly.hours = this.getAmPmHour(parsedHours);
     this.state.weekly.hourType = this.getHourType(parsedHours);
-    this.state.weekly.minutes = parseInt(minutes, 10);
+    this.state.weekly.minutes = parseInt(minutes, 10).toString().padStart(2, '0');
     this.state.weekly.seconds = parseInt(seconds, 10);
   }
 
@@ -502,7 +502,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
     const parsedHours = parseInt(hours, 10);
     this.state.monthly.specificDay.hours = this.getAmPmHour(parsedHours);
     this.state.monthly.specificDay.hourType = this.getHourType(parsedHours);
-    this.state.monthly.specificDay.minutes = parseInt(minutes, 10);
+    this.state.monthly.specificDay.minutes = parseInt(minutes, 10).toString().padStart(2, '0');
     this.state.monthly.specificDay.seconds = parseInt(seconds, 10);
   }
 
@@ -518,7 +518,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
     const parsedHours = parseInt(hours, 10);
     this.state.monthly.specificWeekDay.hours = this.getAmPmHour(parsedHours);
     this.state.monthly.specificWeekDay.hourType = this.getHourType(parsedHours);
-    this.state.monthly.specificWeekDay.minutes = parseInt(minutes, 10);
+    this.state.monthly.specificWeekDay.minutes = parseInt(minutes, 10).toString().padStart(2, '0');
     this.state.monthly.specificWeekDay.seconds = parseInt(seconds, 10);
   }
 
@@ -531,7 +531,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
     const parsedHours = parseInt(hours, 10);
     this.state.yearly.specificMonthDay.hours = this.getAmPmHour(parsedHours);
     this.state.yearly.specificMonthDay.hourType = this.getHourType(parsedHours);
-    this.state.yearly.specificMonthDay.minutes = parseInt(minutes, 10);
+    this.state.yearly.specificMonthDay.minutes = parseInt(minutes, 10).toString().padStart(2, '0');
     this.state.yearly.specificMonthDay.seconds = parseInt(seconds, 10);
   }
 
@@ -547,7 +547,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
     const parsedHours = parseInt(hours, 10);
     this.state.yearly.specificMonthWeek.hours = this.getAmPmHour(parsedHours);
     this.state.yearly.specificMonthWeek.hourType = this.getHourType(parsedHours);
-    this.state.yearly.specificMonthWeek.minutes = parseInt(minutes, 10);
+    this.state.yearly.specificMonthWeek.minutes = parseInt(minutes, 10).toString().padStart(2, '0');
     this.state.yearly.specificMonthWeek.seconds = parseInt(seconds, 10);
   }
 
@@ -569,7 +569,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
    */
   private getInitialState() {
     const defaultHours = 0;
-    const defaultMinutes = 0;
+    const defaultMinutes = '00';
     const defaultSeconds = 0;
     const defaultStartDay = 1;
     return {
@@ -579,7 +579,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
       },
       hourly: {
         hours: 1,
-        minutes: 0,
+        minutes: '00',
         seconds: 0
       },
       daily: {
@@ -663,7 +663,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
       months: this.getRange(1, 12),
       monthWeeks: ['#1', '#2', '#3', '#4', '#5', 'L'],
       days: ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'],
-      minutes: this.getRange(1, 59),
+      minutes: this.getRange(1, 59).map(x => x.toString().padStart(2, '0')),
       seconds: this.getRange(1, 59),
       hours: this.getRange(1, 23),
       monthDays: this.getRange(1, 31),

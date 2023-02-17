@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { CronOptions } from '@cardiosmircem/ngx-cron-editor';
+import { CronOptions } from '@tarktech/ngx-cron-editor';
 
 @Component({
   selector: 'app-root',

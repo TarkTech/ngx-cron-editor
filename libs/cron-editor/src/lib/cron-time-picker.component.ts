@@ -32,7 +32,7 @@ export class TimePickerComponent {
 
   @Input() hourTab = false;
 
-  public minutes = [...range(0, 59)];
+  public minutes: Array<string> = [];
 
   public seconds = [...range(0, 59)];
 
@@ -50,5 +50,7 @@ export class TimePickerComponent {
     return this.use24HourTime ? this.hour24Format :  this.hour12Format;
   }
 
-  constructor(public parent: ControlContainer) {}
+  constructor(public parent: ControlContainer) {
+    this.minutes = [...range(0, 59)].map(x => x.toString().padStart(2, '0'));
+  }
 }
