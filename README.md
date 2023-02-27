@@ -1,4 +1,4 @@
-# @cardiosmircem/ngx-cron-editor
+# @tarktech/ngx-cron-editor
 
 An angular component for building cron expressions graphically with **i18n localization available** 🥳.
 Other fixes are:
@@ -16,13 +16,13 @@ A demo can be found 👉 👉 👉 [here](https://cardiosmircem.github.io/ngx-cr
 1. Install the npm package
 
    ```
-   $ npm i @cardiosmircem/ngx-cron-editor
+   $ npm i @tarktech/ngx-cron-editor
    ```
 
 2. import the module in your own module
 
    ```ts
-   import { CronEditorModule } from '@cardiosmircem/ngx-cron-editor';
+   import { CronEditorModule } from '@tarktech/ngx-cron-editor';
 
    @NgModule({
        imports: [..., CronEditorModule],
@@ -46,7 +46,7 @@ A demo can be found 👉 👉 👉 [here](https://cardiosmircem.github.io/ngx-cr
 4. While in your ts component you have
 
 ```ts
-import { CronOptions } from '@cardiosmircem/ngx-cron-editor';
+import { CronOptions } from '@tarktech/ngx-cron-editor';
 
 @Component({
     ...
@@ -76,71 +76,71 @@ export class MyComponent {
 
 ```json
 "cronEditor": {
-    "lbl": {
-      "advanced": "Advanced",
-      "at": "at",
-      "atTime": "at the hour",
-      "every": "Every",
-      "daily": "Daily",
-      "day": "Day",
-      "days": "Days",
-      "expression": "Cron expression",
-      "fromMonthday": "From month day",
-      "daysAndFrom": "days from",
-      "firstWeekDay": "first week",
-      "flavor": "Flavor",
-      "fromDate": "from",
-      "hourly": "Hourly",
-      "hours": "Hours",
-      "language": "Language",
-      "last": "last",
-      "lastDay": "last day",
-      "lastWeekDay": "last week",
-      "minutes": "Minutes",
-      "month": "Month",
-      "monthPlural": "Months (from the month of january)",
-      "months": {
-        "january": "january",
-        "february": "february",
-        "march": "march",
-        "april": "april",
-        "may": "may",
-        "june": "june",
-        "july": "july",
-        "august": "august",
-        "september": "september",
-        "october": "october",
-        "november": "november",
-        "december": "december"
-      },
-      "monthly": "Monthly",
-      "of": "of",
-      "ofEvery": "of every",
-      "onThe": "On the",
-      "onTheDouble": "On the",
-      "onTheDoubleMale": "On the",
-      "onTheTriple": "On the",
-      "onTheFeminine": "On the",
-      "seconds": "Seconds",
-      "selectCronFlavor": "Select your cron flavor",
-      "week": "Week",
-      "weekDays": "From monday to friday at",
-      "yearly": "Yearly",
-      "first": "first",
-      "second": "second",
-      "third": "third",
-      "fourth": "fourth",
-      "fifth": "fifth",
-      "MON": "monday",
-      "TUE": "tuesday",
-      "WED": "wednesday",
-      "THU": "thursday",
-      "FRI": "friday",
-      "SAT": "saturday",
-      "SUN": "sunday",
-      "weekly": "Weekly"
-    }
+  "lbl": {
+    "advanced": "Advanced",
+    "at": "at",
+    "atTime": "at the hour",
+    "every": "Every",
+    "daily": "Daily",
+    "day": "Day",
+    "days": "Days",
+    "expression": "Cron expression",
+    "fromMonthday": "From month day",
+    "daysAndFrom": "days from",
+    "firstWeekDay": "first week",
+    "flavor": "Flavor",
+    "fromDate": "from",
+    "hourly": "Hourly",
+    "hours": "Hour",
+    "language": "Language",
+    "last": "Last",
+    "lastDay": "last day",
+    "lastWeekDay": "last week",
+    "minutes": "Minute",
+    "month": "Month",
+    "monthPlural": "Months (from the month of january)",
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
+    },
+    "monthly": "Monthly",
+    "of": "of",
+    "ofEvery": "of every",
+    "onThe": "On the",
+    "onTheDouble": "On the",
+    "onTheDoubleMale": "On the",
+    "onTheTriple": "On the",
+    "onTheFeminine": "On the",
+    "seconds": "Seconds",
+    "selectCronFlavor": "Select your cron flavor",
+    "week": "Week",
+    "weekDays": "Weekdays at",
+    "yearly": "Yearly",
+    "first": "First",
+    "second": "Second",
+    "third": "Third",
+    "fourth": "Fourth",
+    "fifth": "Fifth",
+    "MON": "Monday",
+    "TUE": "Tuesday",
+    "WED": "Wednesday",
+    "THU": "Thursday",
+    "FRI": "Friday",
+    "SAT": "Saturday",
+    "SUN": "Sunday",
+    "weekly": "Weekly"
   }
+}
 
 ```
 
@@ -164,7 +164,7 @@ Enjoy developing 🏖️ 🌞 🍹
 
 ## History
 
-This package repository has been forked from [ngx-cron-editor](https://github.com/haavardj/ngx-cron-editor).
+This package repository has been forked from [ngx-cron-editor](https://github.com/cardiosMircem/ngx-cron-editor).
 
 ## License
 

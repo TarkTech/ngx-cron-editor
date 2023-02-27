@@ -1,7 +1,7 @@
 {
   "name": "@tarktech/ngx-cron-editor",
   "description": "A cron expression generator with translations",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "repository": {
     "type": "git",
     "url": "https://github.com/TarkTech/ngx-cron-editor"
