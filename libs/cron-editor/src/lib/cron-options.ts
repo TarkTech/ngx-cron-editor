@@ -13,4 +13,5 @@ export interface CronOptions {
   hideSeconds: boolean;
 
   cronFlavor: 'standard' | 'quartz';
+  weekStart?: number;
 }

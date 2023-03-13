@@ -1,13 +1,13 @@
 /* eslint-disable no-shadow */
-export const Days = {
-  SUN: 'sunday',
-  MON: 'monday',
-  TUE: 'tuesday',
-  WED: 'wednesday',
-  THU: 'thursday',
-  FRI: 'friday',
-  SAT: 'saturday'
-};
+export const Days = [
+  { 0: 'SUN' },
+  { 1: 'MON' },
+  { 2: 'TUE' },
+  { 3: 'WED' },
+  { 4: 'THU' },
+  { 5: 'FRI' },
+  { 6: 'SAT' }
+];
 
 export const MonthWeeks = {
   '#1': 'first',

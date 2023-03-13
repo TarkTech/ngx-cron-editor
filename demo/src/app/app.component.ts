@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { CronOptions } from '@tarktech/ngx-cron-editor';
+import { CronOptions } from 'libs/cron-editor/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +23,8 @@ export class AppComponent implements OnInit {
     hideSpecificMonthWeekTab: false,
     use24HourTime: true,
     hideSeconds: false,
-    cronFlavor: 'standard'
+    cronFlavor: 'standard',
+    weekStart: 0
   };
 
   cronFlavorFC: FormControl;

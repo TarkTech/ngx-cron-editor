@@ -80,13 +80,7 @@
       <span>{{('cronEditor.lbl.every' | translate) + '&nbsp;' + '&nbsp;' }}</span>
 
       <div [formGroup]="weeklyForm">
-        <mat-checkbox class="check-weekday" formControlName="MON">{{ 'cronEditor.lbl.MON' | translate }}</mat-checkbox>
-        <mat-checkbox class="check-weekday" formControlName="TUE">{{ 'cronEditor.lbl.TUE' | translate }}</mat-checkbox>
-        <mat-checkbox class="check-weekday" formControlName="WED">{{ 'cronEditor.lbl.WED' | translate }}</mat-checkbox>
-        <mat-checkbox class="check-weekday" formControlName="THU">{{ 'cronEditor.lbl.THU' | translate }}</mat-checkbox>
-        <mat-checkbox class="check-weekday" formControlName="FRI">{{ 'cronEditor.lbl.FRI' | translate }}</mat-checkbox>
-        <mat-checkbox class="check-weekday" formControlName="SAT">{{ 'cronEditor.lbl.SAT' | translate }}</mat-checkbox>
-        <mat-checkbox class="check-weekday" formControlName="SUN">{{ 'cronEditor.lbl.SUN' | translate }}</mat-checkbox>
+        <mat-checkbox *ngFor="let day of selectOptions.daysSortedByWeekStart" class="check-weekday" formControlName="{{day}}">{{ 'cronEditor.lbl.' + day | translate }}</mat-checkbox>
       </div>
 
       <span>{{ ('cronEditor.lbl.at' | translate) + '&nbsp;' + '&nbsp;' }}</span>
@@ -171,7 +165,7 @@
             <mat-form-field class="ml-12">
               <mat-label>{{ 'cronEditor.lbl.day' | translate }}</mat-label>
               <mat-select formControlName="day">
-                <mat-option *ngFor="let day of selectOptions.days" [value]="day">
+                <mat-option *ngFor="let day of selectOptions.daysSortedByWeekStart" [value]="day">
                   {{ ('cronEditor.lbl.' + day) | translate }}
                 </mat-option>
               </mat-select>
@@ -262,7 +256,7 @@
           <mat-form-field formGroupName="specificMonthWeek">
             <mat-label>{{ 'cronEditor.lbl.day' | translate }}</mat-label>
             <mat-select formControlName="day">
-              <mat-option *ngFor="let day of selectOptions.days" [value]="day">
+              <mat-option *ngFor="let day of selectOptions.daysSortedByWeekStart" [value]="day">
                 {{ ('cronEditor.lbl.' + day) | translate }}
               </mat-option>
             </mat-select>
