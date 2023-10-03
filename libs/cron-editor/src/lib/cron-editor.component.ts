@@ -14,7 +14,7 @@ import {
 } from '@angular/core';
 import { CronOptions } from './cron-options';
 import { MonthWeeks, Tabs, Months, Days } from './enums';
-import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, UntypedFormBuilder, UntypedFormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
 
@@ -66,19 +66,19 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
 
   readonly Months = Months;
 
-  minutesForm: FormGroup;
+  minutesForm: UntypedFormGroup;
 
-  hourlyForm: FormGroup;
+  hourlyForm: UntypedFormGroup;
 
-  dailyForm: FormGroup;
+  dailyForm: UntypedFormGroup;
 
-  weeklyForm: FormGroup;
+  weeklyForm: UntypedFormGroup;
 
-  monthlyForm: FormGroup;
+  monthlyForm: UntypedFormGroup;
 
-  yearlyForm: FormGroup;
+  yearlyForm: UntypedFormGroup;
 
-  advancedForm: FormGroup;
+  advancedForm: UntypedFormGroup;
 
   currentLanguage = 'en';
 
@@ -122,7 +122,7 @@ export class CronEditorComponent implements OnInit, ControlValueAccessor, OnDest
     return this.options.cronFlavor === 'quartz' ? '?' : '*';
   }
 
-  constructor(private fb: FormBuilder, private translateService: TranslateService) { }
+  constructor(private fb: UntypedFormBuilder, private translateService: TranslateService) { }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.cronStartingValue.firstChange) {
       this.firstChange++;
