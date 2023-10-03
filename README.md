@@ -1,7 +1,7 @@
 # @tarktech/ngx-cron-editor
 
 An angular component for building cron expressions graphically with **i18n localization available** 🥳.
-Other fixes are:
+Other fixes are from the previous ngx-cron-editor-libraries are:
 
 - usage of solely reactive forms (got rid of template forms) 🤓
 - useful scripts are added in order to make future development easy 😌
@@ -10,6 +10,10 @@ Other fixes are:
 ## Demo
 
 A demo can be found 👉 👉 👉 [here](https://cardiosmircem.github.io/ngx-cron-editor/) 👈 👈 👈
+
+## Package
+
+Npm package can be found 👉 👉 👉 [here](https://www.npmjs.com/package/@cardiosmircem/ngx-cron-editor) 👈 👈 👈
 
 ## Usage
 

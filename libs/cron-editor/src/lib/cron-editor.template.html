@@ -29,7 +29,7 @@
   <mat-tab *ngIf="!options.hideDailyTab" label="{{ 'cronEditor.lbl.daily' | translate }}">
     <div class="cron-editor-tab-content" [formGroup]="dailyForm">
 
-      <mat-radio-group formControlName="subTab" fxLayout="column" fxLayoutAlign="stretch start">
+      <mat-radio-group formControlName="subTab" class="column-stretch-start">
         <mat-radio-button name="subTab" value="everyDays" checked="checked">
 
           <span>{{('cronEditor.lbl.every' | translate) + '&nbsp;' + '&nbsp;' }}</span>
@@ -94,7 +94,7 @@
   <!-- MONTHLY -->
   <mat-tab label="{{ 'cronEditor.lbl.monthly' | translate }}" *ngIf="!options.hideMonthlyTab">
     <div class="cron-editor-tab-content" [formGroup]="monthlyForm">
-      <mat-radio-group formControlName="subTab" fxLayout="column" fxLayoutAlign="stretch start">
+      <mat-radio-group formControlName="subTab" class="column-stretch-start">
 
         <mat-radio-button name="monthly-radio" value="specificDay">
           <!-- SPECIFIC DAY -->
@@ -197,7 +197,7 @@
   <!-- YEARLY -->
   <mat-tab label="{{ 'cronEditor.lbl.yearly' | translate }}" *ngIf="!options.hideYearlyTab">
     <div class="cron-editor-tab-content" [formGroup]="yearlyForm">
-      <mat-radio-group formControlName="subTab" fxLayout="column" fxLayoutAlign="stretch start">
+      <mat-radio-group formControlName="subTab" class="column-stretch-start">
         <mat-radio-button name="yearly-radio" value="specificMonthDay">
 
           {{ ('cronEditor.lbl.onThe' | translate) + '&nbsp;' + '&nbsp;' }}

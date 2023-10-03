@@ -12,13 +12,11 @@ import { CronEditorComponent } from './cron-editor.component';
 import { TimePickerComponent } from './cron-time-picker.component';
 import { MonthDayDisplayPipe } from './month-day-display.pipe';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { OrdinalSuffixPipe } from './ordinal-suffix.pipe';
 
 @NgModule({
   imports: [
     CommonModule,
-    FlexLayoutModule,
     ReactiveFormsModule,
     MatTabsModule,
     MatListModule,
