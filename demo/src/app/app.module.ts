@@ -9,7 +9,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { AppComponent } from './app.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CronEditorModule } from '@cardiosmircem/ngx-cron-editor';
 
@@ -33,12 +33,12 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
         useFactory: createTranslateLoader,
         deps: [HttpClient]
       }
-    }),
-    HttpClientModule
+    })
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],
   providers: [
+    provideHttpClient(),
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: { appearance: 'outline' }

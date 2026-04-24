@@ -12,3 +12,9 @@
 .check-weekday {
   margin-left: 12px;
 }
+
+.cron-radio-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

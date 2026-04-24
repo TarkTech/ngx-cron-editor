@@ -3,13 +3,11 @@
   "compilerOptions": {
     "skipLibCheck": true,
     "outDir": "../../dist/apps/demo"
-},
+  },
   "files": [
-    "main.ts",
-    "polyfills.ts"
+    "main.ts"
   ],
   "include": [
     "**/*.d.ts"
   ]
 }
-
