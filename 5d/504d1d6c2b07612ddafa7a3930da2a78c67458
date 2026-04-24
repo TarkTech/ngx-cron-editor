@@ -1,0 +1,25 @@
+package.json
+  ef10f23b586d9941 2-13,16-19,23-24
+tsconfig.json
+  ef10f23b586d9941 23-25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.4",
+  "base_commit_sha": "5d504d1d6c2b07612ddafa7a3930da2a78c67458",
+  "prompts": {
+    "ef10f23b586d9941": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c7a31258-6d3b-4a93-bbc8-13efc7adca51",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "Rumit",
+      "messages": [],
+      "total_additions": 22,
+      "total_deletions": 4,
+      "accepted_lines": 22,
+      "overriden_lines": 0
+    }
+  }
+}
