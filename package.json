@@ -1,14 +1,29 @@
 {
-  "name": "ngx-cron-editor",
+  "name": "@cardiosmircem/ngx-cron-editor",
+  "description": "A cron expression generator with translations for Angular",
+  "version": "1.0.2",
+  "main": "dist/cron-editor/fesm2022/cardiosmircem-ngx-cron-editor.mjs",
+  "module": "dist/cron-editor/fesm2022/cardiosmircem-ngx-cron-editor.mjs",
+  "typings": "dist/cron-editor/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/cron-editor/index.d.ts",
+      "default": "./dist/cron-editor/fesm2022/cardiosmircem-ngx-cron-editor.mjs"
+    }
+  },
   "scripts": {
     "ng": "ng",
-    "start": "ng build cron-editor && npm install && ng serve",
-    "build": "ng build cron-editor && npm install && ng build",
+    "prepare": "ng build cron-editor",
+    "postprepare": "npm install --ignore-scripts --no-audit --no-fund",
+    "start": "ng serve",
+    "build": "ng build cron-editor && ng build",
     "build:lib": "ng build cron-editor",
     "pub": "cd libs/cron-editor && npm publish --access public"
   },
+  "optionalDependencies": {
+    "@cardiosmircem/ngx-cron-editor": "file:dist/cron-editor"
+  },
   "dependencies": {
-    "@cardiosmircem/ngx-cron-editor": "file:dist/cron-editor",
     "@angular/animations": "^20.0.0",
     "@angular/cdk": "^20.0.0",
     "@angular/common": "^20.0.0",

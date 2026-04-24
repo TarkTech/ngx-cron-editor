@@ -20,6 +20,9 @@
       "dom"
     ],
     "paths": {
+      "@cardiosmircem/ngx-cron-editor": [
+        "dist/cron-editor"
+      ],
       "cron-editor": [
         "dist/cron-editor/cron-editor",
         "dist/cron-editor"
